@@ -1,0 +1,207 @@
+:host {
+
+  .modal {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    padding: 50px 30px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background: #f8f7f9;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+
+    .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      color: #333;
+      transform: scale(1.1);
+    }
+  }
+
+
+
+
+    .player-name {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+
+      .name-description {
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      input {
+        width: 100%;
+        font-size: 16px;
+        padding: 8px 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        outline: none;
+        appearance: none;
+      }
+
+      input:focus {
+        border-color: #7b5fff;
+        box-shadow: 0 0 0 2px rgba(123, 95, 255, 0.2);
+      }
+
+      select {
+        width: 80px;
+        height: 40px;
+        padding: 4px 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        appearance: menulist-button;
+      }
+
+      select:focus {
+        border-color: #7b5fff;
+        box-shadow: 0 0 0 2px rgba(123, 95, 255, 0.2);
+        outline: none;
+      }
+    }
+
+    .rooms-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-height: 50vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 5px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #bbb;
+        border-radius: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #888;
+      }
+
+      .room-card {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        color: #333;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .room-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+
+          p {
+            margin: 0.3rem 0 0;
+            font-size: 0.9rem;
+            color: #666;
+          }
+
+          .status {
+            margin-top: 0.3rem;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            text-transform: capitalize;
+            font-weight: 700;
+
+            &.waiting {
+              background: #22c55e;
+              color: #ffffff;
+            }
+
+            &.playing {
+              background: #facc15;
+              color: #fff;
+            }
+
+            &.finished {
+              background: #ef4444;
+              color: #fff;
+            }
+          }
+        }
+
+        .join-btn {
+          background: linear-gradient(135deg, #7b5fff, #a18cd1);
+          color: #fff;
+          border: none;
+          padding: 0.6rem 1.4rem;
+          border-radius: 10px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: linear-gradient(135deg, #6746e0, #8c6ad4);
+            transform: translateY(-2px);
+          }
+
+          &:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  .loading {
+    height: 20px;
+  }
+
+  @media (max-width: 328px) {
+    .room-card {
+      justify-content: center !important;
+    }
+  }
+
+
+
+}

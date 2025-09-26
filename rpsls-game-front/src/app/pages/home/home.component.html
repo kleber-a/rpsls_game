@@ -1,0 +1,45 @@
+<main>
+  <div class="title">
+    <h2>Pedra, Papel, Tesoura, Lagarto, Spock</h2>
+    <p>O clássico jogo expandido para dois jogadores</p>
+  </div>
+
+  <div class="cards">
+    <button class="card player-card" (click)="openDialog()">
+      <div class="card-emoji">👥</div>
+      <h3 class="card-title">Jogador vs Jogador</h3>
+      <p class="card-description">Jogue contra um amigo</p>
+    </button>
+
+    <button class="card computer-card" [routerLink]="['/computer']">
+      <div class="card-emoji">🤖</div>
+      <h3 class="card-title">Jogador vs Computador</h3>
+      <p class="card-description">Desafie o computador</p>
+    </button>
+  </div>
+  <div class="container_rules">
+    <div class="sheldon">
+      <img
+        src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3BlYXUzd3dobXVpb2d4Z3VhOW1oY3J2ZTNidWwzdWF2bmp2d2dwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fOVGTYyYtV6Ra/giphy.gif"
+        alt="Sheldon Cooper" />
+
+    </div>
+
+    <div class="rules">
+      <h3 class="sub-title">Regras do Jogo (Decore antes de começar):</h3>
+      <ul>
+        <li><span class="scissors">Tesoura</span> corta <span class="paper">Papel</span></li>
+        <li><span class="paper">Papel</span> cobre <span class="rock">Pedra</span></li>
+        <li><span class="rock">Pedra</span> esmaga <span class="lizard">Lagarto</span></li>
+        <li><span class="lizard">Lagarto</span> envenena <span class="spock">Spock</span></li>
+        <li><span class="spock">Spock</span> derrete <span class="scissors">Tesoura</span></li>
+        <li><span class="scissors">Tesoura</span> decapita <span class="lizard">Lagarto</span></li>
+        <li><span class="lizard">Lagarto</span> come <span class="paper">Papel</span></li>
+        <li><span class="paper">Papel</span> refuta <span class="spock">Spock</span></li>
+        <li><span class="spock">Spock</span> vaporiza <span class="rock">Pedra</span></li>
+        <li><span class="rock">Pedra</span> quebra <span class="scissors">Tesoura</span></li>
+      </ul>
+    </div>
+
+  </div>
+</main>

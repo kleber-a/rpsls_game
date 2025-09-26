@@ -1,0 +1,68 @@
+<div class="horizon">
+  <div class="grid"></div>
+  <div class="container">
+
+    <div class="header">
+      <button class="btn-exit" [routerLink]="['/']">Sair</button>
+      <h2 class="title">ARENA DE DUELO</h2>
+      <span class="round">Round {{roundNumber()}}</span>
+    </div>
+
+    <div class="players">
+      <div class="player" [ngClass]="{'winner': player().winner}">
+        <div class="avatar animate-float">🧙‍♂️</div>
+        <span class="name">{{player().name}}</span>
+        <div class="bar_hp">
+          <div class="hp_info">
+            <span>HP</span>
+            <span class="hp_value">{{player().score}}</span>
+          </div>
+          <div class="bar_bg">
+            <div class="bar_fill" [ngStyle]="{'width': player().score + '%'}"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="opponent" [ngClass]="{'winner': opponent().winner}">
+        <div class="avatar animate-float">🤖</div>
+        <span class="name">{{opponent().name}}</span>
+        <div class="bar_hp">
+          <div class="hp_info">
+            <span>HP</span>
+            <span class="hp_value">{{opponent().score}}</span>
+          </div>
+          <div class="bar_bg">
+            <div class="bar_fill" [ngStyle]="{'width': opponent().score + '%'}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <span class="message">{{message()}}</span>
+      <div class="cards_result">
+        <button class="card">
+          <div class="value" [ngClass]="{ show: results().player, hidden: !results().player }">
+            {{ results().player ? results().player : '?' }}
+          </div>
+        </button>
+        <button class="card">
+          <div class="value" [ngClass]="{ show: results().opponent, hidden: !results().opponent }">
+            {{ results().opponent ? results().opponent : '?' }}
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="list_card">
+      <span class="title_list_card">Escolha sua carta!</span>
+      <div class="cards">
+        <button class="card" *ngFor="let item of selection" (click)="selectCard(item.key)" [disabled]="disablePlayer() || endGame()">
+          <div>{{item.icon}}</div>
+          <div>{{item.name}}</div>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

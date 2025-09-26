@@ -1,0 +1,165 @@
+:host {
+  main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    background: linear-gradient(180deg, #f3f0eb 0%, #e2ded8 100%);
+    color: #333;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+
+    .title {
+      h2 {
+        font-size: 48px;
+        color: #6b3f00; // roxo/laranja suave depende do card
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 20px;
+        color: #555;
+      }
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+
+      .card {
+        width: 220px;
+        height: 280px;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 20px;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: #a18cd1; // padrão roxo
+        font-family: 'Segoe UI', sans-serif;
+
+        .card-emoji {
+          font-size: 50px;
+          margin-bottom: 20px;
+        }
+
+        .card-title {
+          font-size: 22px;
+          font-weight: 600;
+          margin-bottom: 8px;
+          color: #fff;
+        }
+
+        .card-description {
+          font-size: 16px;
+          color: #f0f0f0;
+        }
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      .player-card {
+        background: #7b5fff;
+      }
+
+      .computer-card {
+        background: #ff9e57;
+      }
+    }
+
+    .container_rules {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .sheldon {
+        margin-top: 20px;
+
+        img {
+          width: 200px;
+          /* aumenta a largura */
+          height: auto;
+          /* mantém proporção */
+          max-width: 100%;
+          /* responsivo */
+        }
+      }
+
+      .rules {
+        margin-top: 30px;
+        padding: 20px 30px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        max-width: 400px;
+
+        h3 {
+          font-size: 22px;
+          margin-bottom: 10px;
+        }
+
+        ul {
+          list-style: disc;
+          padding-left: 20px;
+
+          li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+
+            .rock {
+              color: #dd6b20; // laranja
+              font-weight: 600;
+            }
+
+            .paper {
+              color: #3182ce; // azul
+              font-weight: 600;
+            }
+
+            .scissors {
+              color: #e53e3e; // vermelho
+              font-weight: 600;
+            }
+
+            .lizard {
+              color: #38a169; // verde
+              font-weight: 600;
+            }
+
+            .spock {
+              color: #d69e2e; // amarelo
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+    @media (max-width: 520px) {
+      .container_rules {
+        flex-direction: column;
+      }
+    }
+
+
+
+}
+
+
+

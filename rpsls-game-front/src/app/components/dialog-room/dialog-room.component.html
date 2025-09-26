@@ -1,0 +1,41 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">×</button>
+  <section class="player-name">
+    <span class="name-description">Digite seu nome para entrar na sala</span>
+    <label>Nome</label>
+    <input matInput [(ngModel)]="playerName" placeholder="Digite seu nome">
+    <label for="player-icon">Avatar:</label>
+    <select id="player-icon" [(ngModel)]="selectedIcon">
+      <option *ngFor="let icon of icons" [value]="icon">
+        {{ icon }}
+      </option>
+    </select>
+  </section>
+  <section class="rooms-container">
+    <div class="loading">
+      @if (loading()) {
+        <p class="loading-text">Carregando salas...</p>
+      }
+    </div>
+    @for (room of rooms(); track room) {
+    <div class="room-card">
+      <div class="room-info">
+        <h3>{{ room.roomName }}</h3>
+        <p>{{ room.players.length }}/2 jogadores</p>
+        <span class="status" [ngClass]="{
+                  'waiting': room.status === 'waiting',
+                  'playing': room.status === 'playing',
+                  'finished': room.status === 'finished'
+                }">
+          {{ roomStatus(room.status )}}
+        </span>
+      </div>
+      <button class="join-btn" [disabled]="!playerName || room.status !== 'waiting' || loading()"
+        (click)="joinRoom(room)">
+        Entrar
+      </button>
+    </div>
+    }
+  </section>
+
+</div>
