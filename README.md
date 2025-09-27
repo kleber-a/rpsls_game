@@ -3,6 +3,17 @@
 Um jogo de duelo baseado no clássico **Pedra, Papel, Tesoura, Lagarto e Spock**, desenvolvido com **Angular** no front-end e **Node.js / Socket.IO** no back-end.
 O projeto permite que usuários se conectem em salas, escolham avatares e joguem partidas em tempo real.
 
+**🎮 Clique no giff abaixo para jogar agora!**
+
+[![Acesse o jogo](https://media3.giphy.com/media/CV61LRKyQf6P6/giphy.gif)](https://rpsls-game-front.vercel.app/)
+
+
+
+https://github.com/user-attachments/assets/3e3aa6a0-eb14-4445-8bdd-80e889929ac4
+
+
+
+
 O repositório é organizado em duas pastas:
 
 * `rpsls_game_front` — Front-end (Angular)
