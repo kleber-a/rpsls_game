@@ -12,8 +12,6 @@ O projeto permite que usuários se conectem em salas, escolham avatares e joguem
 https://github.com/user-attachments/assets/3e3aa6a0-eb14-4445-8bdd-80e889929ac4
 
 
-
-
 O repositório é organizado em duas pastas:
 
 * `rpsls_game_front` — Front-end (Angular)
@@ -58,7 +56,7 @@ Crie arquivos `.env` nas pastas correspondentes:
 ```bash
 PORT=3000
 MONGO_URI=seu_mongodb_uri
-URL=url_backend
+URL=url_front_end
 ```
 #### Front-end (`rpsls_game_front/src/environments/environment.ts`)
 ```bash
@@ -107,6 +105,53 @@ Principais eventos implementados:
 | `history`        | Object         | ❌ No        | `{}`        | Histórico da sala                                |
 | `lastResult`     | String         | ❌ No        | `''`        | Último resultado                                 |
 | `createdAt`      | Date           | ❌ No        | `Date.now`  | Data de criação da sala                          |
+
+
+
+## ⚡ Como rodar a aplicação
+### 🔹 Back-end
+
+1. Abra o terminal e navegue até a pasta do back-end:
+```bash
+cd rpsls_game_back
+```
+2. Instale as dependências:
+```bash
+npm install
+```
+3. Certifique-se de ter o arquivo `.env` configurado com:
+```bash
+PORT=3000
+MONGO_URI=seu_mongodb_uri
+URL=url_front_end
+```
+4. Inicie o servidor:
+```bash
+npm run dev
+```
+O servidor ficará disponível em `http://localhost:3000`.
+
+### 🔹 Front-end
+
+1. Abra outro terminal e navegue até a pasta do front-end:
+```bash
+cd rpsls_game_front
+```
+2. Instale as dependências:
+```bash
+npm install
+```
+3. Configure a URL da API no arquivo `src/environments/environment.ts`:
+```bash
+export const environment = {
+  API_URL: 'http://localhost:3000' //URL BackEnd
+};
+```
+4. Inicie a aplicação Angular:
+```bash
+ng serve
+```
+O front-end estará disponível em `http://localhost:4200`.
 
 
 
