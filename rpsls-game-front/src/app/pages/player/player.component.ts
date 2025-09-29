@@ -107,7 +107,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
       'paper-rock': 'Papel cobre pedra',
       'rock-lizard': 'Pedra esmaga lagarto',
       'lizard-spock': 'Lagarto envenena Spock',
-      'spock-scissors': 'Spock esmaga tesoura',
+      'spock-scissors': 'Spock derrete tesoura',
       'scissors-lizard': 'Tesoura decapita lagarto',
       'lizard-paper': 'Lagarto come papel',
       'paper-spock': 'Papel refuta Spock',
