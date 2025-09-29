@@ -40,7 +40,8 @@ io.on("connection", (socket) => {
         const room = await Room.findOne({ roomName });
         if (!room) return;
 
-        const existingPlayer = room.players.find(p => p.name === playerName);
+        // const existingPlayer = room.players.find(p => p.name === playerName);
+        const existingPlayer = room.players.find(p => p.socketId === socket.id);
         if (room.players.length >= 2 && !existingPlayer) {
             socket.emit("roomFull", { message: "A sala já está cheia!" });
             return;
@@ -128,6 +129,28 @@ io.on("connection", (socket) => {
                             updatedRoom.lastResult = `${p1.name} é o vencedor!!`;
                         }
                         updatedRoom.status = 'finished';
+                        await updatedRoom.save();
+                        const rooms = await Room.find()
+                        io.emit("roomsUpdate", rooms);
+
+
+                        setTimeout(async () => {
+                            try {
+                                await Room.findByIdAndUpdate(updatedRoom._id, {
+                                    players: [],
+                                    status: "waiting",
+                                    roundNumber: 1,
+                                    lastResult: ""
+                                });
+
+                                const rooms = await Room.find();
+                                io.emit("roomsUpdate", rooms);
+                            } catch (err) {
+                                console.error("Erro ao resetar sala:", err);
+                            }
+                        }, 15000);
+
+
                     } else {
                         updatedRoom.roundNumber++;
                     }
@@ -153,10 +176,16 @@ io.on("connection", (socket) => {
             room.status = "waiting";
             room.roundNumber = 1;
             room.lastResult = '';
-        } else if(room.status === "playing" && room.players.length < 2) {
+        } else if (room.status === "playing" && room.players.length < 2) {
             room.status = "waiting";
             room.roundNumber = 1;
             room.lastResult = '';
+            room.players.forEach(p => {
+                p.score = 100;
+                p.selected = false;
+                p.winner = false;
+                p.choice = [];
+            });
         }
 
         await room.save();
