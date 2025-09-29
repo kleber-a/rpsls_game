@@ -151,17 +151,29 @@
           justify-content: center;
         }
 
-        .value {
-          font-size: clamp(2rem, 8vw, 4rem);
-          opacity: 0;
-          transform: scale(0.8);
-          transition: opacity 0.4s ease, transform 0.4s ease;
-
-          &.show {
-            opacity: 1;
-            transform: scale(1);
-          }
+        .text_end_game {
+          display: flex;
+          flex-direction: column;
         }
+          .value {
+            font-size: clamp(2rem, 8vw, 4rem);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+
+            &.show {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+
+          .countdown {
+            color: #FFF;
+            font-size: 22px;
+            font-weight: 600;
+            text-align: center;
+          }
+
       }
 
       .list_card {
@@ -293,7 +305,7 @@
     }
   }
 
-    @media (max-width: 400px) {
+  @media (max-width: 400px) {
     .header {
       .btn-exit {
         position: absolute;

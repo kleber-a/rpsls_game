@@ -23,6 +23,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   message = signal('');
   results = signal<Results>({ player: null, opponent: null });
+  countdownDisplay = signal(15)
 
   selection: Card[] = [
     { key: 'rock', icon: '🗿', name: 'Pedra' },
@@ -92,52 +93,65 @@ export class PlayerComponent implements OnInit, OnDestroy {
     }, 3000);
   }
 
-resultRound(): string {
-  const rules: Record<CardKey, CardKey[]> = {
-    rock: ['scissors', 'lizard'],
-    paper: ['rock', 'spock'],
-    scissors: ['paper', 'lizard'],
-    lizard: ['spock', 'paper'],
-    spock: ['scissors', 'rock']
-  };
+  resultRound(): string {
+    const rules: Record<CardKey, CardKey[]> = {
+      rock: ['scissors', 'lizard'],
+      paper: ['rock', 'spock'],
+      scissors: ['paper', 'lizard'],
+      lizard: ['spock', 'paper'],
+      spock: ['scissors', 'rock']
+    };
 
-  const phrases: Record<string, string> = {
-    'scissors-paper': 'Tesoura corta papel',
-    'paper-rock': 'Papel cobre pedra',
-    'rock-lizard': 'Pedra esmaga lagarto',
-    'lizard-spock': 'Lagarto envenena Spock',
-    'spock-scissors': 'Spock esmaga tesoura',
-    'scissors-lizard': 'Tesoura decapita lagarto',
-    'lizard-paper': 'Lagarto come papel',
-    'paper-spock': 'Papel refuta Spock',
-    'spock-rock': 'Spock vaporiza pedra',
-    'rock-scissors': 'Pedra quebra tesoura'
-  };
+    const phrases: Record<string, string> = {
+      'scissors-paper': 'Tesoura corta papel',
+      'paper-rock': 'Papel cobre pedra',
+      'rock-lizard': 'Pedra esmaga lagarto',
+      'lizard-spock': 'Lagarto envenena Spock',
+      'spock-scissors': 'Spock esmaga tesoura',
+      'scissors-lizard': 'Tesoura decapita lagarto',
+      'lizard-paper': 'Lagarto come papel',
+      'paper-spock': 'Papel refuta Spock',
+      'spock-rock': 'Spock vaporiza pedra',
+      'rock-scissors': 'Pedra quebra tesoura'
+    };
 
-  const round = (this.room()?.roundNumber || 1) - 1;
-  const p = this.player().choice[round] as CardKey | '';
-  const o = this.opponent().choice[round] as CardKey | '';
+    const round = (this.room()?.roundNumber || 1) - 1;
+    const p = this.player().choice[round] as CardKey | '';
+    const o = this.opponent().choice[round] as CardKey | '';
 
-  if (!p || !o) return 'Aguardando...';
-  if (p === o) return 'Empate!';
+    if (!p || !o) return 'Aguardando...';
+    if (p === o) return 'Empate!';
 
-  const key = `${p}-${o}`;
-  const reverseKey = `${o}-${p}`;
+    const key = `${p}-${o}`;
+    const reverseKey = `${o}-${p}`;
 
-  if (rules[p]?.includes(o)) {
-    return `Você venceu! ${phrases[key]}`;
+    if (rules[p]?.includes(o)) {
+      return `Você venceu! ${phrases[key]}`;
+    }
+    if (rules[o]?.includes(p)) {
+      return `Seu oponente venceu! ${phrases[reverseKey]}`;
+    }
+
+    return 'Resultado indefinido';
   }
-  if (rules[o]?.includes(p)) {
-    return `Seu oponente venceu! ${phrases[reverseKey]}`;
-  }
-
-  return 'Resultado indefinido';
-}
 
 
   finishGame() {
     this.message.set('Fim de Jogo');
     this.endGame.set(true);
+
+    let countdown = 15;
+    this.countdownDisplay.set(countdown);
+
+    const interval = setInterval(() => {
+      countdown--;
+      this.countdownDisplay.set(countdown);
+
+      if (countdown <= 0) {
+        clearInterval(interval);
+        this.leaveRoom();
+      }
+    }, 1000);
   }
 
   leaveRoom() {

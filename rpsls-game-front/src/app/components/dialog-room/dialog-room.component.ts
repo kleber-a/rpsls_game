@@ -43,6 +43,7 @@ export class DialogRoomComponent implements OnInit {
 
   public loading = signal(true);
 
+  socketId = signal<any>('')
 
   statusMap: Record<string, string> = {
     waiting: 'Disponível',
@@ -81,10 +82,12 @@ export class DialogRoomComponent implements OnInit {
   }
 
   joinRoom(event: any) {
+    this.socketId.set(this.#service.getSocketIdSignal()())
     const body = {
       roomName: event.roomName,
       name: this.playerName,
-      avatar: this.selectedIcon
+      avatar: this.selectedIcon,
+      socketId: this.socketId()
     }
     sessionStorage.setItem('player', JSON.stringify(body));
     this.#route.navigate(['/player', event.roomName])
@@ -101,6 +104,7 @@ export class DialogRoomComponent implements OnInit {
         panelClass: ['white-snackbar'],
         data: { status: 'error', message: 'Error na requisição' }
       });
+    this.#dialogRef.close(false);
   }
 
   closeModal() {

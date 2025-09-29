@@ -55,10 +55,15 @@
           </div>
         </button>
         } @else {
-        <span class="value">
-          {{room()?.lastResult}}
-        </span>
-        }
+        <div class="text_end_game">
+          <span class="value">
+            {{room()?.lastResult}}
+          </span>
+          <span class="countdown">
+            Saindo da sala em {{countdownDisplay()}} segundos
+          </span>
+        </div>
+      }
       </div>
       <span class="message">{{resultRound()}}</span>
 
