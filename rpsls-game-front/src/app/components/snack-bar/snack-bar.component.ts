@@ -43,7 +43,6 @@ export class SnackBarComponent implements OnInit {
         this.icon.set('');
         this.color.set('black');
     }
-    console.log('snackBarRef', this.data())
   }
 
   getIcon(status: string) {
