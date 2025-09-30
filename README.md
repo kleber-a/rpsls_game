@@ -32,9 +32,8 @@ O repositório é organizado em duas pastas:
 
 ## 🎯 Funcionalidades
 ### 🖥️ Front-end
-* Tela de login e escolha de avatar
-* Criação e entrada em salas de duelo
-* Exibição de placar e resultados das partidas
+* Interface para criar nome e escolher avatar do jogador
+* Entrada em salas de jogo multiplayer
 * Interface responsiva e animada
 
 ### ⚙️ Back-end
