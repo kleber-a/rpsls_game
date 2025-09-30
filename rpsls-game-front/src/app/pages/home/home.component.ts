@@ -9,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { DialogRoomComponent } from '../../components/dialog-room/dialog-room.component';
 import { ApiService } from '../../api.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,15 @@ import { ApiService } from '../../api.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   #dialog = inject(MatDialog);
   #service = inject(ApiService);
+  #title = inject(Title);
+
+  ngOnInit(): void {
+      this.#title.setTitle('RPSLS - Pedra, Papel, Tesoura, Lagarto e Spock')
+  }
 
   openDialog() {
     const dialogRef = this.#dialog.open(DialogRoomComponent, {
