@@ -19,7 +19,7 @@ export class ComputerComponent {
   disablePlayer = signal(false);
   endGame = signal(false);
 
-  message = signal('');
+  message = signal('Escolha sua carta');
   results = signal<Results>({ player: null, opponent: null });
   roundNumber = signal(1);
 
@@ -55,21 +55,22 @@ export class ComputerComponent {
     this.opponent.set(o);
 
     this.disablePlayer.set(true);
-    this.message.set('Os dois escolheram');
+
 
     const round = this.roundNumber() - 1;
     this.results.set({
       player: this.selectIcons[p.choice],
       opponent: this.selectIcons[o.choice]
     });
+    this.calculateScore();
 
     setTimeout(() => {
-      this.calculateScore();
       this.results.set({ player: null, opponent: null });
       this.roundNumber.update(v => v + 1);
       this.player.update(pl => ({ ...pl, selected: false }));
       this.opponent.update(op => ({ ...op, selected: false }));
       this.disablePlayer.set(false);
+      this.message.set('Escolha sua carta');
     }, 2000);
   }
 

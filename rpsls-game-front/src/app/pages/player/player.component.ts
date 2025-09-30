@@ -138,20 +138,25 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   finishGame() {
     this.message.set('Fim de Jogo');
-    this.endGame.set(true);
+    if(!this.endGame()) {
+      this.endGame.set(true);
 
-    let countdown = 15;
-    this.countdownDisplay.set(countdown);
-
-    const interval = setInterval(() => {
-      countdown--;
+      let countdown = 15;
       this.countdownDisplay.set(countdown);
+      const urlRoute = this.#route.url;
 
-      if (countdown <= 0) {
-        clearInterval(interval);
-        this.leaveRoom();
-      }
-    }, 1000);
+      const interval = setInterval(() => {
+        countdown--;
+        this.countdownDisplay.set(countdown);
+
+        if (countdown <= 0) {
+          clearInterval(interval);
+          if (this.#route.url === urlRoute) {
+            this.leaveRoom();
+          }
+        }
+      }, 1000);
+    }
   }
 
   leaveRoom() {
